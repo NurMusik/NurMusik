@@ -1,6 +1,7 @@
 {
   "name": "vite-template-react",
   "version": "1.2.0",
+  "type": "module",
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -13,6 +14,7 @@
     "bootstrap-icons": "^1.9.1",
     "react": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-countdown-circle-timer": "^3.0.9",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

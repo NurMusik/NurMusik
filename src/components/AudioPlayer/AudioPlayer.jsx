@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Timer from "../Timer/Timer"
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -17,6 +18,7 @@ const AudioPlayer = () => {
           type="audio/mp3"
         />
       </audio>
+      <Timer isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
       <button onClick={togglePlayer}>{isPlaying ? "Pause" : "Play"}</button>
     </>
   );

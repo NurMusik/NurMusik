@@ -7,7 +7,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const App = () => {
   return (
     <div>
-      <Player />
+      <h1>Nur Musik</h1>
+      <AudioPlayer />
     </div>
   );
 };
