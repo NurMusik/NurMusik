@@ -1,0 +1,50 @@
+.PlayerPage {
+  /* display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;  */
+
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 15% 50% 10% 25%;
+  align-items: center;
+  text-align: center;
+}
+.Banner {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  width: 100%;
+  vertical-align:middle;
+}
+.bi.bi-arrow-left {
+
+  font-size: 40px;
+}
+.bi.bi-three-dots {
+  font-size: 40px;
+}
+.RadioInfo {
+  border: 1px solid red;
+  height: 100%;
+}
+.TimerInfo {
+  height: 100%;
+  margin: 5px;
+}
+
+.startTimerButton {
+  margin: 5px;
+}
+.PlayBackFunctionality {
+    display: flex; 
+    
+}
+.bi {
+  font-size: 80px;
+}
+.bi.nextPrev{ 
+    height: 100%; 
+
+    margin: 20px; 
+    font-size: 40px;
+}
