@@ -1,9 +1,11 @@
+import React, { Component } from 'react';
 import './App.css';
+import Player from './jsx/Player'
 
 const App = () => {
   return (
     <div>
-      <h1>Nur Musik</h1>
+      <Player />
     </div>
   );
 };
