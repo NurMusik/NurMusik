@@ -38,12 +38,18 @@ const Player = () => {
         <i className="bi bi-three-dots"></i>
       </div>
       <div className="RadioInfo">
-        Radio Information
-        <Timer
+        <h6>102.5</h6>
+
+        <h6>Classic FM</h6>
+        <h6>The world's greatest musci</h6>
+
+
+        <div className="timer"><Timer
           playState={playState}
           stopPlayer={stopPlayer}
           duration={totalSeconds}
-        />
+        /></div>
+
       </div>
       <div className="TimerInfo">
         <div>
@@ -93,9 +99,10 @@ const Player = () => {
             type="audio/mp3"
           />
         </audio>
-        <button onClick={togglePlayer}>
+        <button onClick={togglePlayer} className="nextPrev">
           {playState ? (
-            <i className="bi bi-pause-circle" />
+            
+            <i className="bi bi-pause-circle " />
           ) : (
             <i className=" bi bi-play-circle" />
           )}

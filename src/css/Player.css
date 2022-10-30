@@ -23,15 +23,25 @@
 .bi.bi-three-dots {
   font-size: 40px;
 }
+
+.nextPrev{
+  border: non-transparent;
+}
 .RadioInfo {
-  border: 1px solid red;
   height: 100%;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 .TimerInfo {
   height: 100%;
   margin: 5px;
 }
 
+.BannerTitle{
+font-size: 35px;}
 .startTimerButton {
   margin: 5px;
 }
