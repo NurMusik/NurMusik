@@ -14,7 +14,6 @@ const Player = () => {
 
   const totalSeconds = parseInt(minutesState) * 60 + parseInt(secondsState);
 
-
   const stopPlayer = () => {
     const player = document.getElementById('player');
     player['pause']();
@@ -31,10 +30,6 @@ const Player = () => {
     playState ? stopPlayer() : startPlayer();
   };
 
-  const [key, setKey] = useState(0);
-
-  console.log(playState)
-
   return (
     <div className="PlayerPage">
       <div className="Banner">
@@ -44,7 +39,11 @@ const Player = () => {
       </div>
       <div className="RadioInfo">
         Radio Information
-        <Timer playState={playState} stopPlayer={stopPlayer} duration={totalSeconds}/>
+        <Timer
+          playState={playState}
+          stopPlayer={stopPlayer}
+          duration={totalSeconds}
+        />
       </div>
       <div className="TimerInfo">
         <div>
