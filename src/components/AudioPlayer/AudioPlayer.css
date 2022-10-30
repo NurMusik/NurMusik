@@ -1,7 +1,7 @@
 .PlayerPage {
-  display: grid;
   height: 100vh;
-  grid-template-rows: 15% 50% 10% 25%;
+  display: grid;
+  grid-template-rows: repeat(auto, 3);
   text-align: center;
 }
 
@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: repeat(3, auto);
   width: 100%;
+  align-items: center;
 }
 
 .bi.bi-arrow-left {
@@ -28,13 +29,31 @@
 }
 
 .TimerInfo {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  margin: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem;
 }
 
 .BannerTitle {
   font-size: 35px;
 }
+
 .startTimerButton {
   margin: 5px;
+}
+
+.radio-frequency {
+  font-size: 3rem;
+  font-weight: normal;
+}
+
+.radio-name {
+  font-weight: normal;
+}
+
+.radio-description {
 }

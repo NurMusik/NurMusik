@@ -36,25 +36,22 @@ const Player = () => {
         />
       </audio>
       <div className="PlayerPage">
-        <div className="Banner">
-          <i className="bi bi-arrow-left"></i>
-          <div className="BannerTitle">NurMusik</div>
-          <i className="bi bi-three-dots"></i>
-        </div>
+        {/* <div className="Banner"> */}
+        {/* <i className="bi bi-arrow-left"></i> */}
+        {/* <h1 className="BannerTitle">NurMusik</h1> */}
+        {/* <i className="bi bi-three-dots"></i> */}
+        {/* </div> */}
         <div className="RadioInfo">
-          <h6>102.5</h6>
-          <h6>Classic FM</h6>
-          <h6>The world's greatest musci</h6>
-
-          <div className="timer">
-            <Timer
-              playState={playState}
-              stopPlayer={stopPlayer}
-              duration={totalSeconds}
-            />
-          </div>
+          <h2 className="radio-frequency">102.5</h2>
+          <h3 className="radio-name">Classic FM</h3>
+          {/* <h4 className="radio-description">The world's greatest music</h4> */}
         </div>
         <div className="TimerInfo">
+          <Timer
+            playState={playState}
+            stopPlayer={stopPlayer}
+            duration={totalSeconds}
+          />
           <div>
             <label style={{ fontWeight: "bold" }}>
               <select
