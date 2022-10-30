@@ -1,16 +1,32 @@
 // import { AiFillPlayCircle } from 'react-icons/fa';
-import { useState } from "react";
-import AudioPlayer from "../components/AudioPlayer/AudioPlayer";
-import Timer from "../components/Timer/Timer";
-import "../css/Player.css";
+import { useState } from 'react';
+import AudioPlayer from '../components/AudioPlayer/AudioPlayer';
+import Timer from '../components/Timer/Timer';
+import '../css/Player.css';
 
 const Player = () => {
   const [playState, setPlayState] = useState(false);
 
-  const minutes = ["28", "29", "30"];
-  const seconds = ["00", "01", "02"];
-  const [minutesState, setMinutes] = useState("30");
-  const [secondsState, setSeconds] = useState("00");
+  const minutes = ['28', '29', '30'];
+  const seconds = ['00', '01', '02'];
+  const [minutesState, setMinutes] = useState('30');
+  const [secondsState, setSeconds] = useState('00');
+
+  const stopPlayer = () => {
+    const player = document.getElementById('player');
+    player['pause']();
+    setPlayState(false);
+  };
+
+  const startPlayer = () => {
+    const player = document.getElementById('player');
+    player['play']();
+    setPlayState(true);
+  };
+
+  const togglePlayer = () => {
+    playState ? stopPlayer() : startPlayer();
+  };
 
   return (
     <div className="PlayerPage">
@@ -21,11 +37,11 @@ const Player = () => {
       </div>
       <div className="RadioInfo">
         Radio Information
-        <Timer playState={playState} setPlayState={setPlayState} />
+        <Timer playState={playState} stopPlayer={stopPlayer} />
       </div>
       <div className="TimerInfo">
         <div>
-          <label style={{ fontWeight: "bold" }}>
+          <label style={{ fontWeight: 'bold' }}>
             <select
               className="mx-2"
               required={true}
@@ -36,12 +52,12 @@ const Player = () => {
             >
               {minutes.map((h, id) => (
                 <option key={id} value={h}>
-                  {h}{" "}
+                  {h}{' '}
                 </option>
               ))}
             </select>
           </label>
-          <label style={{ fontWeight: "bold" }}>
+          <label style={{ fontWeight: 'bold' }}>
             <select
               className="mx-2"
               required={true}
@@ -53,7 +69,7 @@ const Player = () => {
             >
               {seconds.map((h, id) => (
                 <option key={id} value={h}>
-                  {h}{" "}
+                  {h}{' '}
                 </option>
               ))}
             </select>
@@ -65,7 +81,19 @@ const Player = () => {
         onClick={() => setPlayState(!playState)}
       >
         <i className="bi nextPrev bi-caret-left-fill"></i>
-        <AudioPlayer playState={playState} setPlayState={setPlayState} />
+        <audio id="player" preload="none">
+          <source
+            src="https://media-ssl.musicradio.com/ClassicFM"
+            type="audio/mp3"
+          />
+        </audio>
+        <button onClick={togglePlayer}>
+          {playState ? (
+            <i className="bi bi-pause-circle" />
+          ) : (
+            <i className=" bi bi-play-circle" />
+          )}
+        </button>
         <i className="bi nextPrev bi-caret-right-fill"></i>
       </div>
     </div>
