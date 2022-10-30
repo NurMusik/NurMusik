@@ -21,11 +21,24 @@
 
 .RadioInfo {
   display: flex;
-  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.radio-frequency {
+  font-size: 3.5rem;
+  font-weight: normal;
+}
+
+.radio-name {
+  font-weight: normal;
+}
+
+.radio-description {
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .TimerInfo {
@@ -35,25 +48,8 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin: 1rem;
 }
 
 .BannerTitle {
   font-size: 35px;
-}
-
-.startTimerButton {
-  margin: 5px;
-}
-
-.radio-frequency {
-  font-size: 3rem;
-  font-weight: normal;
-}
-
-.radio-name {
-  font-weight: normal;
-}
-
-.radio-description {
 }

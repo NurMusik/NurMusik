@@ -6,7 +6,7 @@ import "./AudioPlayer.css";
 const Player = () => {
   const [playState, setPlayState] = useState(false);
 
-  const minutes = ["00", "01", "02"];
+  const minutes = ["00", "01", "60"];
   const seconds = ["00", "01", "02"];
   const [minutesState, setMinutes] = useState("00");
   const [secondsState, setSeconds] = useState("00");
@@ -44,7 +44,7 @@ const Player = () => {
         <div className="RadioInfo">
           <h2 className="radio-frequency">102.5</h2>
           <h3 className="radio-name">Classic FM</h3>
-          {/* <h4 className="radio-description">The world's greatest music</h4> */}
+          <h4 className="radio-description">The world's greatest music</h4>
         </div>
         <div className="TimerInfo">
           <Timer
