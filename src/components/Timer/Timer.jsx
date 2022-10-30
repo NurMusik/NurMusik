@@ -18,7 +18,9 @@ const Timer = ({ playState, stopPlayer, duration }) => {
         setKey(key + 1);
       }}
     >
-      {renderTime}
+      {({ remainingTime, color }) => (
+        <span style={{ color }}>{renderTime({ remainingTime })}</span>
+      )}
     </CountdownCircleTimer>
   );
 };

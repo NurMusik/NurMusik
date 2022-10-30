@@ -6,7 +6,7 @@ import "./AudioPlayer.css";
 const Player = () => {
   const [playState, setPlayState] = useState(false);
 
-  const minutes = ["00", "01", "60"];
+  const minutes = ["00", "01", "03"];
   const seconds = ["00", "01", "02"];
   const [minutesState, setMinutes] = useState("00");
   const [secondsState, setSeconds] = useState("00");
@@ -52,10 +52,10 @@ const Player = () => {
             stopPlayer={stopPlayer}
             duration={totalSeconds}
           />
-          <div>
+          <div className="time-selector-container">
             <label style={{ fontWeight: "bold" }}>
               <select
-                className="mx-2"
+                className="time-selector mx-2"
                 required={true}
                 value={minutesState}
                 onChange={(e) => {
@@ -71,7 +71,7 @@ const Player = () => {
             </label>
             <label style={{ fontWeight: "bold" }}>
               <select
-                className="mx-2"
+                className="time-selector mx-2"
                 required={true}
                 value={secondsState}
                 onChange={(e) => {

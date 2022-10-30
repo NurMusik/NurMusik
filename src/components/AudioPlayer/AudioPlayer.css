@@ -53,3 +53,13 @@
 .BannerTitle {
   font-size: 35px;
 }
+
+.time-selector-container {
+  display: flex;
+}
+
+.time-selector {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 8px;
+}
