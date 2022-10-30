@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import React, { useState } from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const Timer = ({ playState, stopPlayer, duration }) => {
   const [key, setKey] = useState(0);
@@ -9,7 +9,7 @@ const Timer = ({ playState, stopPlayer, duration }) => {
       key={key}
       isPlaying={playState}
       duration={duration}
-      colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+      colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
       colorsTime={[10, 6, 3, 0]}
       onComplete={() => {
         stopPlayer();

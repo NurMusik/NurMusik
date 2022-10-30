@@ -1,4 +1,17 @@
+.control-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .control-button {
   border: none;
   background: none;
+  font-size: 5rem;
+  width: 100%;
+}
+
+.control-prev,
+.control-next {
+  font-size: 4rem;
 }
