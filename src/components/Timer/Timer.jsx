@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-const Timer = ({ isPlaying, setIsPlaying }) => {
+const Timer = ({ playState, setPlayState }) => {
   return (
     <CountdownCircleTimer
-      isPlaying={isPlaying}
+      isPlaying={playState}
       duration={5}
       colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
       colorsTime={[10, 6, 3, 0]}
       onComplete={() => {
-        setIsPlaying(false);
+        setPlayState(false);
         return { shouldRepeat: false };
       }}
     >

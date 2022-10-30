@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Timer from "../Timer/Timer"
+import Timer from "../Timer/Timer";
 
-const AudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const AudioPlayer = ({ playState, setPlayState }) => {
   const togglePlayer = () => {
     const player = document.getElementById("player");
-    const method = isPlaying ? "pause" : "play";
-    setIsPlaying(!isPlaying);
+    const method = playState ? "pause" : "play";
+    setPlayState(!playState);
     player[method]();
   };
 
@@ -18,8 +17,13 @@ const AudioPlayer = () => {
           type="audio/mp3"
         />
       </audio>
-      <Timer isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
-      <button onClick={togglePlayer}>{isPlaying ? "Pause" : "Play"}</button>
+      <button onClick={togglePlayer}>
+        {playState ? (
+          <i className="bi bi-pause-circle" />
+        ) : (
+          <i className=" bi bi-play-circle" />
+        )}
+      </button>
     </>
   );
 };
