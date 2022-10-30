@@ -7,10 +7,13 @@ import '../css/Player.css';
 const Player = () => {
   const [playState, setPlayState] = useState(false);
 
-  const minutes = ['28', '29', '30'];
+  const minutes = ['00', '01', '02'];
   const seconds = ['00', '01', '02'];
-  const [minutesState, setMinutes] = useState('30');
+  const [minutesState, setMinutes] = useState('00');
   const [secondsState, setSeconds] = useState('00');
+
+  const totalSeconds = parseInt(minutesState) * 60 + parseInt(secondsState);
+
 
   const stopPlayer = () => {
     const player = document.getElementById('player');
@@ -28,6 +31,10 @@ const Player = () => {
     playState ? stopPlayer() : startPlayer();
   };
 
+  const [key, setKey] = useState(0);
+
+  console.log(playState)
+
   return (
     <div className="PlayerPage">
       <div className="Banner">
@@ -37,7 +44,7 @@ const Player = () => {
       </div>
       <div className="RadioInfo">
         Radio Information
-        <Timer playState={playState} stopPlayer={stopPlayer} />
+        <Timer playState={playState} stopPlayer={stopPlayer} duration={totalSeconds}/>
       </div>
       <div className="TimerInfo">
         <div>

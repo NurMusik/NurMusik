@@ -1,16 +1,20 @@
 import React from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
-const Timer = ({ playState, stopPlayer }) => {
+const Timer = ({ playState, stopPlayer, duration, key }) => {
+
+  
+
   return (
     <CountdownCircleTimer
+      key ={key}
       isPlaying={playState}
-      duration={3}
+      duration={duration}
       colors={['#004777', '#F7B801', '#A30000', '#A30000']}
       colorsTime={[10, 6, 3, 0]}
       onComplete={() => {
         stopPlayer();
-        return { shouldRepeat: false };
+        return { shouldRepeat: true, delay: 0, duration: {duration}};
       }}
     >
       {renderTime}
