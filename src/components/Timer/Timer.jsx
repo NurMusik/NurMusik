@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { formatTime, getTimeDimension } from "./times";
 import "./Timer.css";
+import { formatTime } from "./times";
 
 const Timer = ({ playState, stopPlayer, duration }) => {
   const [key, setKey] = useState(0);
@@ -30,20 +30,30 @@ const renderTime = ({ remainingTime }) => {
     return <div className="timer">Done</div>;
   }
 
-  const dimension = getTimeDimension(remainingTime);
-  const [minutes, seconds] = formatTime(dimension, remainingTime);
+  const [hours, minutes, seconds] = formatTime(remainingTime);
 
-  if(dimension == 'minutes') {
-    return (
-      <div className="timer">
-        <div className="value">{minutes} M {seconds} S</div>
-      </div>
-    );
-  } 
   return (
     <div className="timer">
-      <div className="value">{seconds}</div>
-      <div className="text">{dimension}</div>
+      <div className="value">
+        {hours > 0 && (
+          <span>
+            {hours}
+            <span className="timer-subscript">hr</span>
+          </span>
+        )}
+        {minutes > 0 && (
+          <span>
+            {minutes}
+            <span className="timer-subscript">m</span>
+          </span>
+        )}
+        {seconds > 0 && (
+          <span>
+            {seconds}
+            <span className="timer-subscript">s</span>
+          </span>
+        )}
+      </div>
     </div>
   );
 };
