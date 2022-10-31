@@ -1,4 +1,3 @@
-import { ContactSupportOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import ControlBar from "../ControlBar/ControlBar";
 import Timer from "../Timer/Timer";
@@ -7,9 +6,12 @@ import "./AudioPlayer.css";
 const Player = () => {
   const [playState, setPlayState] = useState(false);
 
-
-  const minutes = Array.from(new Array(60),(val,index)=> String(index).padStart(2, '0'));
-  const seconds = Array.from(new Array(60),(val,index)=> String(index).padStart(2, '0'));
+  const minutes = Array.from(new Array(60), (val, index) =>
+    String(index).padStart(2, "0")
+  );
+  const seconds = Array.from(new Array(60), (val, index) =>
+    String(index).padStart(2, "0")
+  );
   const [minutesState, setMinutes] = useState("05");
   const [secondsState, setSeconds] = useState("00");
 
