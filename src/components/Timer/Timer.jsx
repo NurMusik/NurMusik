@@ -31,10 +31,18 @@ const renderTime = ({ remainingTime }) => {
   }
 
   const dimension = getTimeDimension(remainingTime);
-  const formattedTime = formatTime(dimension, remainingTime);
+  const [minutes, seconds] = formatTime(dimension, remainingTime);
+
+  if(dimension == 'minutes') {
+    return (
+      <div className="timer">
+        <div className="value">{minutes} M {seconds} S</div>
+      </div>
+    );
+  } 
   return (
     <div className="timer">
-      <div className="value">{formattedTime}</div>
+      <div className="value">{seconds}</div>
       <div className="text">{dimension}</div>
     </div>
   );

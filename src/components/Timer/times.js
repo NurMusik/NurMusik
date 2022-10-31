@@ -4,7 +4,8 @@ const daySeconds = 86400;
 
 const getTimeDays = (time) => Math.floor(time / daySeconds) | 0;
 const getTimeHours = (time) => Math.floor(time / hourSeconds) | 0;
-const getTimeMinutes = (time) => Math.floor(time / minuteSeconds) | 0;
+const getTimeMinutes = (time) =>Math.floor(time / minuteSeconds) | 0;
+const getTimeSecondsLeft = (time) =>Math.floor(time % minuteSeconds) | 0;
 
 export const getTimeDimension = (time) => {
   const days = getTimeDays(time);
@@ -28,9 +29,9 @@ export const formatTime = (dimension, time) => {
     case "h":
       return getTimeHours(time);
     case "m":
-      return getTimeMinutes(time);
+      return [getTimeMinutes(time), getTimeSecondsLeft(time)];
     case "s":
-      return time;
+      return [0,time];
     default:
       return time;
   }
