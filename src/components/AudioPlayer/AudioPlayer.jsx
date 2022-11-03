@@ -2,8 +2,11 @@ import { useState } from 'react';
 import ControlBar from '../ControlBar/ControlBar';
 import Timer from '../Timer/Timer';
 import './AudioPlayer.css';
+import { useLocation } from 'react-router-dom';
 
-const Player = () => {
+const Player = (stationUrl) => {
+  const location = useLocation(); 
+  console.log("Location state: ", location.state)
   const [playState, setPlayState] = useState(false);
   const [timerKey, setTimerKey] = useState(0);
 
@@ -36,7 +39,7 @@ const Player = () => {
     <>
       <audio id="player" preload="none">
         <source
-          src="https://media-ssl.musicradio.com/ClassicFM"
+          src={`${location.state}`}
           type="audio/mp3"
         />
       </audio>
