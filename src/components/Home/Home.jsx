@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RadioBrowserApi, StationSearchType } from "radio-browser-api";
+import SuggestionCard from "../SuggestionCards/SuggestionCards";
 
 const Home = () => {
   const api = new RadioBrowserApi("My Radio App");
@@ -9,6 +10,7 @@ const Home = () => {
 
 //   const [stations, setStations] = useState();
   const [selectedUrl, setSelectedUrl] = useState(''); 
+  const [selectedStation, setSelectedStation] = useState(''); 
 
   async function getStations() {
  
@@ -19,7 +21,19 @@ const Home = () => {
         });
     
     setSelectedUrl(stations[4].url)
+    setSelectedStation(stations[4]);
+    console.log(stations[4]);
     // console.log(stations[4].url)
+  }
+
+  async function getTopStationsByType (type, number) {
+    const stations = await api.searchStations({
+      countryCode: "US",
+      limit: number,
+      tag: type,
+      offset: 0, // this is the default - can be omited
+    });
+    return stations; 
   }
   
   getStations(); 
@@ -28,6 +42,7 @@ const Home = () => {
   return (
     <div>
       <Link to="/audioPlayer" state={selectedUrl}>Radio Link</Link>
+      <SuggestionCard station={selectedStation}></SuggestionCard>
     </div>
   );
 };
