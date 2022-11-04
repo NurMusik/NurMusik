@@ -1,38 +1,40 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { RadioBrowserApi, StationSearchType } from "radio-browser-api";
+import { RadioBrowserApi } from "radio-browser-api";
+import { useEffect, useState } from "react";
+import { tags } from "../../utilities/constants";
 import SuggestionCard from "../SuggestionCards/SuggestionCards";
-import { useEffect } from "react";
+import "./Home.css";
 
 const Home = () => {
   const api = new RadioBrowserApi("My Radio App");
   const [stations, setStations] = useState([]);
   const [intialized, setInitialized] = useState(false);
-  
-  const genres = [ 'piano', 'jazz', 'classic','rock']
-  const [selectedGenre, setGenre] = useState(genres[0])
+
+  const [selectedGenre, setGenre] = useState(tags[0]);
   async function getStations() {
     const waiting_stations = await api.searchStations({
       countryCode: "US",
-      //tag: selectedGenre, 
+      tag: selectedGenre,
       limit: 100,
       offset: 0, // this is the default - can be omited
     });
     setStations(waiting_stations);
-    setInitialized(true)
+    setInitialized(true);
   }
 
-  useEffect(() => {getStations()}, [intialized]); 
-  const tags = stations.map(station => station.tags)
-  console.log(tags)
+  useEffect(() => {
+    getStations();
+  }, [intialized]);
 
   return (
-    <div>
+    <div className="genre-cards-container">
+      {tags.map((genre, idx) => (
+        <div key={idx} className="genre-card">
+          {genre.at(0).toUpperCase() + genre.slice(1)}
+        </div>
+      ))}
 
-      {genres.map((genre) => <button>{genre}</button> )}
-    
       {stations.map((station) => (
-        <SuggestionCard station={station}></SuggestionCard>
+        <SuggestionCard key={station.id} station={station}></SuggestionCard>
       ))}
     </div>
   );
