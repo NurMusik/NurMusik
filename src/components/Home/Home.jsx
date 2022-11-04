@@ -2,47 +2,38 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RadioBrowserApi, StationSearchType } from "radio-browser-api";
 import SuggestionCard from "../SuggestionCards/SuggestionCards";
+import { useEffect } from "react";
 
 const Home = () => {
   const api = new RadioBrowserApi("My Radio App");
-
-  // query stations by country code and limit to first 100 stations
-
-//   const [stations, setStations] = useState();
-  const [selectedUrl, setSelectedUrl] = useState(''); 
-  const [selectedStation, setSelectedStation] = useState(''); 
-
+  const [stations, setStations] = useState([]);
+  const [intialized, setInitialized] = useState(false);
+  
+  const genres = [ 'piano', 'jazz', 'classic','rock']
+  const [selectedGenre, setGenre] = useState(genres[0])
   async function getStations() {
- 
-    const stations = await api.searchStations({
-          countryCode: "US",
-          limit: 5,
-          offset: 0, // this is the default - can be omited
-        });
-    
-    setSelectedUrl(stations[4].url)
-    setSelectedStation(stations[4]);
-    console.log(stations[4]);
-    // console.log(stations[4].url)
-  }
-
-  async function getTopStationsByType (type, number) {
-    const stations = await api.searchStations({
+    const waiting_stations = await api.searchStations({
       countryCode: "US",
-      limit: number,
-      tag: type,
+      //tag: selectedGenre, 
+      limit: 100,
       offset: 0, // this is the default - can be omited
     });
-    return stations; 
+    setStations(waiting_stations);
+    setInitialized(true)
   }
-  
-  getStations(); 
-//   console.log("SelectedUrl", selectedUrl)
+
+  useEffect(() => {getStations()}, [intialized]); 
+  const tags = stations.map(station => station.tags)
+  console.log(tags)
 
   return (
     <div>
-      <Link to="/audioPlayer" state={selectedUrl}>Radio Link</Link>
-      <SuggestionCard station={selectedStation}></SuggestionCard>
+
+      {genres.map((genre) => <button>{genre}</button> )}
+    
+      {stations.map((station) => (
+        <SuggestionCard station={station}></SuggestionCard>
+      ))}
     </div>
   );
 };
