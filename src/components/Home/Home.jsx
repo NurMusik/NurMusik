@@ -2,40 +2,24 @@ import { RadioBrowserApi } from "radio-browser-api";
 import { useEffect, useState } from "react";
 import { tags } from "../../utilities/constants";
 import SuggestionCard from "../SuggestionCards/SuggestionCards";
+import { useNavigate } from 'react-router-dom';
 import "./Home.css";
 
 const Home = () => {
-  const api = new RadioBrowserApi("My Radio App");
-  const [stations, setStations] = useState([]);
-  const [intialized, setInitialized] = useState(false);
-
-  const [selectedGenre, setGenre] = useState(tags[0]);
-  async function getStations() {
-    const waiting_stations = await api.searchStations({
-      countryCode: "US",
-      tag: selectedGenre,
-      limit: 100,
-      offset: 0, // this is the default - can be omited
+  const navigate = useNavigate();
+  const goToPosts = (tags) =>
+    navigate({
+      pathname: `/genres/${tags}`,
     });
-    setStations(waiting_stations);
-    setInitialized(true);
-  }
-
-  useEffect(() => {
-    getStations();
-  }, [intialized]);
 
   return (
     <div className="genre-cards-container">
       {tags.map((genre, idx) => (
-        <div key={idx} className="genre-card">
+        <button key={idx} className="genre-card" onClick={()=>goToPosts(genre)}>
           {genre.at(0).toUpperCase() + genre.slice(1)}
-        </div>
+        </button>
       ))}
 
-      {stations.map((station) => (
-        <SuggestionCard key={station.id} station={station}></SuggestionCard>
-      ))}
     </div>
   );
 };
