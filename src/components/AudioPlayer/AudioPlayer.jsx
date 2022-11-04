@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ControlBar from '../ControlBar/ControlBar';
 import Timer from '../Timer/Timer';
 import './AudioPlayer.css';
 import { useLocation } from 'react-router-dom';
+import { RadioBrowserApi } from 'radio-browser-api';
 
 const Player = (stationUrl) => {
-  const location = useLocation(); 
-  console.log("Location state: ", location.state)
+  const { id } = useParams();
+
+  const api = new RadioBrowserApi('My Radio App');
+
+  const [station, setStation] = useState([]);
+  const [intialized, setInitialized] = useState(false);
+  useEffect(() => {
+    async function getStation() {
+      const waiting_stations = await api.searchStations({
+        id: id,
+      });
+      setStation(waiting_stations[0]);
+      setInitialized(true);
+    }
+
+    getStation();
+  }, [intialized]);
+
+  console.log(station);
+
+  const location = useLocation();
+  console.log('Location state: ', location.state);
   const [playState, setPlayState] = useState(false);
   const [timerKey, setTimerKey] = useState(0);
 
@@ -38,10 +60,7 @@ const Player = (stationUrl) => {
   return (
     <>
       <audio id="player" preload="none">
-        <source
-          src={`${location.state}`}
-          type="audio/mp3"
-        />
+        <source src={`${location.state}`} type="audio/mp3" />
       </audio>
       <div className="PlayerPage">
         {/* <div className="Banner"> */}
