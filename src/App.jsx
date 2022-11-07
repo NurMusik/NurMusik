@@ -15,7 +15,7 @@ const App = () => {
           path="/genres/:tags"
           element={<SuggestionCard></SuggestionCard>}
         />
-        <Route path="/player/:id" element={<AudioPlayer />} />
+        <Route path="/player/:name" element={<AudioPlayer />} />
       </Routes>
     </BrowserRouter>
   );
