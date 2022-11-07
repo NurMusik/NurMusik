@@ -14,7 +14,7 @@ const SuggestionCard = ({}) => {
       const waiting_stations = (
         await api.searchStations({
           tag: tags,
-          limit: 100,
+          limit: 1000,
           offset: 0, // this is the default - can be omited
         })
       ).filter((station) => station.name != '');

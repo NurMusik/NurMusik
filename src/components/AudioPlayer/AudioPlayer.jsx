@@ -14,10 +14,18 @@ const Player = () => {
   const [intialized, setInitialized] = useState(false);
   useEffect(() => {
     async function getStation() {
-      const waiting_stations = await api.searchStations({
+      const waitingStations = await api.searchStations({
         name: name,
+        nameExact: true,
       });
-      setStation(waiting_stations[0]);
+      const filteredStations = waitingStations.filter(
+        (station) => station.name === name
+      );
+      const result =
+        filteredStations.length === 0
+          ? waitingStations[0]
+          : filteredStations[0];
+      setStation(result);
       setInitialized(true);
     }
 
