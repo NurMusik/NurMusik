@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { tags } from "../../utilities/constants";
 import { RadioBrowserApi } from "radio-browser-api";
 import SearchBar from "../SearchBar/SearchBar";
 
