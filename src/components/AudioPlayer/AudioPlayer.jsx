@@ -1,9 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ControlBar from '../ControlBar/ControlBar';
 import Timer from '../Timer/Timer';
 import './AudioPlayer.css';
+import { RadioBrowserApi } from 'radio-browser-api';
 
 const Player = () => {
+  const { name } = useParams();
+
+  const api = new RadioBrowserApi('My Radio App');
+
+  const [station, setStation] = useState();
+  const [intialized, setInitialized] = useState(false);
+  useEffect(() => {
+    async function getStation() {
+      const waiting_stations = await api.searchStations({
+        name: name,
+      });
+      setStation(waiting_stations[0]);
+      setInitialized(true);
+    }
+
+    getStation();
+  }, [intialized]);
+
   const [playState, setPlayState] = useState(false);
   const [timerKey, setTimerKey] = useState(0);
 
@@ -32,13 +52,14 @@ const Player = () => {
 
   const togglePlayer = () => (playState ? stopPlayer() : startPlayer());
 
+  if (station == undefined) {
+    return <h1>loading...</h1>;
+  }
+
   return (
     <>
       <audio id="player" preload="none">
-        <source
-          src="https://media-ssl.musicradio.com/ClassicFM"
-          type="audio/mp3"
-        />
+        <source src={station.url} type="audio/mp3" />
       </audio>
       <div className="PlayerPage">
         {/* <div className="Banner"> */}
@@ -47,9 +68,9 @@ const Player = () => {
         {/* <i className="bi bi-three-dots"></i> */}
         {/* </div> */}
         <div className="RadioInfo">
-          <h2 className="radio-frequency">102.5</h2>
-          <h3 className="radio-name">Classic FM</h3>
-          <h4 className="radio-description">The world's greatest music</h4>
+          <h1 className="radio-name">{station.name}</h1>
+          {/* TODO: add more information */}
+          {/* <h4 className="radio-description">The world's greatest music</h4> */}
         </div>
         <div className="TimerInfo">
           <Timer
