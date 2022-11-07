@@ -1,17 +1,35 @@
+import { RadioBrowserApi } from "radio-browser-api";
+import { useState } from "react";
 
-const SearchBar = () => {
-    const handleKeyDown = event => {
-        if (event.key == "Enter") {
-            console.log();
-        }
-        console.log('User pressed: ', event.key);
-    };
+const SearchBar = ({ setStations, tags = "" }) => {
+  const api = new RadioBrowserApi("My Radio App");
+  const [userInput, setUserInput] = useState("");
+  async function getStations() {
+    return await api.searchStations({
+      name: userInput,
+      tag: tags,
+      limit: 100,
+      offset: 0, // this is the default - can be omited
+    });
+  }
 
-    return (
-        <div>
-            <input type="search" placeholder="Enter Radio Name:" onKeyDown={handleKeyDown}></input>
-        </div>
-    );
-}
+  const handleKeyDown = async (event) => {
+    if (event.key == "Enter") {
+      const stationList = (await getStations()).filter(
+        (station) => station.name != ""
+      );
+      setStations(stationList);
+    }
+  };
+
+  return (
+    <input
+      type="search"
+      placeholder="Enter Radio Name:"
+      onChange={(e) => setUserInput(e.currentTarget.value)}
+      onKeyDown={handleKeyDown}
+    />
+  );
+};
 
 export default SearchBar;

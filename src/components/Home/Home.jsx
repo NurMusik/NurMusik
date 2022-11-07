@@ -1,9 +1,5 @@
-import { RadioBrowserApi } from "radio-browser-api";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { tags } from "../../utilities/constants";
-import SuggestionCard from "../SuggestionCards/SuggestionCards";
-import SearchBar from "../SearchBar/SearchBar"
-import { useNavigate } from 'react-router-dom';
 import "./Home.css";
 
 const Home = () => {
@@ -15,13 +11,15 @@ const Home = () => {
 
   return (
     <>
-      <SearchBar></SearchBar>
       <div className="genre-cards-container">
         {tags.map((genre, idx) => (
-          <button key={idx} className="genre-card" onClick={()=>goToPosts(genre)}>
+          <button
+            key={idx}
+            className="genre-card"
+            onClick={() => goToPosts(genre)}
+          >
             {genre.at(0).toUpperCase() + genre.slice(1)}
           </button>
-
         ))}
       </div>
     </>
