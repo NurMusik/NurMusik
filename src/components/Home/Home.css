@@ -10,12 +10,12 @@
   border: 2px solid blue;
 }
 
-.HomeBanner {
-  display: flex;
-  border: 1px solid red;
-  width: 100%;
-  align-items: center;
+.Banner{ 
   justify-content: center;
+  height: 10vh; 
+  position: fixed; 
+  border-bottom: 1px solid black; 
+  background-color: white;
 }
 
 .suggestionCards {
@@ -23,6 +23,7 @@
 }
 
 .genre-cards-container {
+  padding-top: 10vh; 
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
