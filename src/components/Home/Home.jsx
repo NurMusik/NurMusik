@@ -11,6 +11,12 @@ const Home = () => {
 
   return (
     <>
+    <div className="homePage">
+      <div className="Banner">
+        {/* <i className="bi bi-arrow-left"></i> */}
+        <h1 className="BannerTitle">NurMusik</h1>
+        {/* <i className="bi bi-three-dots"></i> */}
+        </div>
       <div className="genre-cards-container">
         {tags.map((genre, idx) => (
           <button
@@ -21,6 +27,7 @@ const Home = () => {
             {genre.at(0).toUpperCase() + genre.slice(1)}
           </button>
         ))}
+      </div>
       </div>
     </>
   );
