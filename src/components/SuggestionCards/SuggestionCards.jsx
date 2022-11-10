@@ -1,3 +1,5 @@
+import './SuggestionCards.css';
+
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { RadioBrowserApi } from 'radio-browser-api';
@@ -21,21 +23,36 @@ const SuggestionCard = ({}) => {
       setStations(waiting_stations);
       setInitialized(true);
     }
-    getStations();
+     getStations();
   }, [intialized]);
+
+  if (!intialized) {
+    return (
+      <>
+        <SearchBar setStations={setStations} tags={tags} />
+        <h1>Stations loading...</h1>
+      </>
+    );
+  }
+
+  console.log(stations); 
 
   return (
     <>
       <SearchBar setStations={setStations} tags={tags} />
-      {stations.map((station) => (
-        <div key={station.id} className="card m-1 p-2">
-          <Link to={`/player/${station.name}`} state={station}>
-            <div className="card-body">
-              <h5 className="card-text">{station.name}</h5>
+      <div className="suggestion-cards-container">  
+        {stations.flatMap((station) => (
+          (station.name.length > 25) 
+            ? []
+            : <div key={station.id} className="suggestion-card m-2 p-2">
+              <Link to={`/player/${station.name}`} state={station}>
+                <div className="card-body">
+                  <h5 className="card-text">{station.name}</h5>
+                </div>
+              </Link>
             </div>
-          </Link>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 };
