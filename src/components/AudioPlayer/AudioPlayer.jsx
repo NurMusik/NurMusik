@@ -4,9 +4,12 @@ import ControlBar from '../ControlBar/ControlBar';
 import Timer from '../Timer/Timer';
 import './AudioPlayer.css';
 import { RadioBrowserApi } from 'radio-browser-api';
+import { useNavigate, useLocation } from 'react-router-dom'
+
 
 const Player = () => {
   const { name } = useParams();
+  const navigate = useNavigate()
 
   const api = new RadioBrowserApi('My Radio App');
 
@@ -70,12 +73,14 @@ const Player = () => {
         <source src={station.url} type="audio/mp3" />
       </audio>
       <div className="PlayerPage">
-        {/* <div className="Banner"> */}
-        {/* <i className="bi bi-arrow-left"></i> */}
-        {/* <h1 className="BannerTitle">NurMusik</h1> */}
-        {/* <i className="bi bi-three-dots"></i> */}
-        {/* </div> */}
+        <div className="Banner">
+          <button onClick={() => navigate(-1)}><i className="bi bi-arrow-left"></i></button>
+
+          <h1 className="BannerTitle">NurMusik</h1>
+          {/* <i className="bi bi-three-dots"></i> */}
+        </div>
         <div className="RadioInfo">
+
           <h1 className="radio-name">{station.name}</h1>
           {/* TODO: add more information */}
           {/* <h4 className="radio-description">The world's greatest music</h4> */}

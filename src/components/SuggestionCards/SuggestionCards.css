@@ -1,11 +1,3 @@
-.suggestion-cards-container {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, 14rem);
-    text-align: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-}
   
 .suggestion-card {
     border: 1px solid blue;
@@ -15,3 +7,29 @@
     width: 100%;
 }
   
+
+.searchBar{
+    /* margin-bottom: 5vh; */
+    padding-top: 15vh;
+    justify-content: center;
+    display: flex;
+    /* padding-top: 5px; */
+
+}
+
+.Banner{
+
+    height: 12.5vh;
+    position: fixed;
+    z-index: 300;
+    background-color: white;
+}
+
+.Banner button {
+    background: none;
+    border: none;
+}
+
+.genre-cards-container{
+
+}
